@@ -1,4 +1,4 @@
-use std::{convert::TryFrom};
+use std::convert::TryFrom;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Direction {
@@ -17,15 +17,15 @@ impl Direction {
     }
 }
 
-impl TryFrom<char> for Direction {
+impl TryFrom<u8> for Direction {
     type Error = String;
 
-    fn try_from(value: char) -> Result<Self, Self::Error> {
+    fn try_from(value: u8) -> Result<Self, Self::Error> {
         match value {
-            'w' => Ok(Direction::Up),
-            's' => Ok(Direction::Down),
-            'd' => Ok(Direction::Right),
-            'a' => Ok(Direction::Left),
+            b'w' => Ok(Direction::Up),
+            b's' => Ok(Direction::Down),
+            b'd' => Ok(Direction::Right),
+            b'a' => Ok(Direction::Left),
             _ => Err("Can't convert".into()),
         }
     }

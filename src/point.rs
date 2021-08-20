@@ -2,8 +2,8 @@ use crate::direction::Direction;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Point2d {
-    pub x: i32,
-    pub y: i32,
+    pub x: u16,
+    pub y: u16,
 }
 
 impl Point2d {
@@ -15,7 +15,10 @@ impl Point2d {
     }
 
     pub fn new_random_point(max_y: u16, max_x: u16) -> Point2d {
-        Point2d::new(rand::random::<u16>() % max_x, rand::random::<u16>() % max_y)
+        Point2d::new(
+            (rand::random::<u16>() % (max_x - 1)) + 1,
+            (rand::random::<u16>() % (max_y - 1)) + 1,
+        )
     }
 
     pub fn move_by_direction(
@@ -42,8 +45,8 @@ impl Point2d {
     }
 }
 
-fn correct_boundary(value: i32, max: u16) -> Result<i32, ()> {
-    if value <= 0 {
+fn correct_boundary(value: u16, max: u16) -> Result<u16, ()> {
+    if value == 0 {
         return Err(());
     }
 
