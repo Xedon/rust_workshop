@@ -111,7 +111,7 @@ impl Game {
             score: 0,
             food_pos: Point2d::new_random_point(max_y, max_x),
             paused: true,
-            debug: true,
+            debug: false,
         }
     }
 }
@@ -179,7 +179,7 @@ impl Game {
                 terminal,
                 "{}{}",
                 termion::cursor::Goto(
-                    (self.max_x / 2).try_into().unwrap(),
+                    (self.max_x / 2 - 6).try_into().unwrap(),
                     (self.max_y / 2).try_into().unwrap()
                 ),
                 "############",
@@ -189,7 +189,7 @@ impl Game {
                 terminal,
                 "{}{}",
                 termion::cursor::Goto(
-                    (self.max_x / 2).try_into().unwrap(),
+                    (self.max_x / 2 - 6).try_into().unwrap(),
                     (self.max_y / 2 - 1).try_into().unwrap()
                 ),
                 "# You Lose #",
@@ -199,10 +199,43 @@ impl Game {
                 terminal,
                 "{}{}",
                 termion::cursor::Goto(
-                    (self.max_x / 2).try_into().unwrap(),
+                    (self.max_x / 2 - 6).try_into().unwrap(),
                     (self.max_y / 2 - 2).try_into().unwrap()
                 ),
                 "############",
+            )
+            .ok();
+        }
+
+        if self.paused {
+            write!(
+                terminal,
+                "{}{}",
+                termion::cursor::Goto(
+                    (self.max_x / 2 - 12).try_into().unwrap(),
+                    (self.max_y / 2).try_into().unwrap()
+                ),
+                "######################",
+            )
+            .ok();
+            write!(
+                terminal,
+                "{}{}",
+                termion::cursor::Goto(
+                    (self.max_x / 2 - 12).try_into().unwrap(),
+                    (self.max_y / 2 - 1).try_into().unwrap()
+                ),
+                "# Press 'p' to start #",
+            )
+            .ok();
+            write!(
+                terminal,
+                "{}{}",
+                termion::cursor::Goto(
+                    (self.max_x / 2 - 12).try_into().unwrap(),
+                    (self.max_y / 2 - 2).try_into().unwrap()
+                ),
+                "######################",
             )
             .ok();
         }
