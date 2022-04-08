@@ -9,6 +9,10 @@ fn main() {
     println!("{} + {} = {}", int, double, double + (int as f64)); // as xx is a typecast
     println!("{} && {} = {}", bool, false, bool && false);
 
+    // {} display formatting seit version 2021
+    println!("{int} + {double} = 1000000000");
+    println!("{bool} && false = false");
+
     let tuple = (10, "Zehn", 10.);
 
     // :#? = debug formatting
